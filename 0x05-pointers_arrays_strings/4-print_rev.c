@@ -18,5 +18,5 @@ count++;
 
 for (count--; count >= 0; count--)
 _putchar(s[count]);
-putchar('\n');
+_putchar('\n');
 }
