@@ -13,9 +13,9 @@ int _pow_recursion(int x, int y)
 switch (y)
 {
 case 0:
-return (x);
-case 1:
 return (1);
+case 1:
+return (x);
 default:
 if (y < 0)
 return (-1);
