@@ -5,12 +5,13 @@
 
 
 /**
- * alloc_grid -returns 2D array of integers with each element initialized to 0.
- *@width:the width of the 2D array
- *@height:the height of the 2D array
- *Returns: returns pointer that points to an array containing integers.
+ * alloc_grid - returns a 2D array of integers with each element
+ * @width: the width of the 2D array.
+ * @height: the height of the 2D array.
+ *
+ * Return: If successful - a pointer to the 2D array.
+ *         If failure - NULL.
  */
-
 
 int **alloc_grid(int width, int height)
 {
