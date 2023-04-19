@@ -2,45 +2,70 @@
 #include <stdio.h>
 
 
-
 /**
- * perform_operation - Performs a mathematical operation on two integers
+ * op_mul - Returns the product of a and b
  * @a: The first integer
  * @b: The second integer
- * @op: The operator to use (+, *, -, %, /)
  *
- * Return: The result of the operation
+ * Return: The product of a and b
  */
-
-
-
-int perform_operation(int a, int b, char op)
+int op_mul(int a, int b)
 {
-switch (op)
-{
-
-case '-':
-return (a - b);
-case '+':
-return (a + b);
-case '/':
-if (b == 0)
-{
-printf("Error\n");
-exit(100);
-}
-return (a / b);
-case '*':
 return (a * b);
-case '%':
-if (b == 0)
+}
+
+
+/**
+ * op_add - Returns the sum of a and b
+ * @a: The first integer
+ * @b: The second integer
+ *
+ * Return: The sum of a and b
+ */
+int op_add(int a, int b)
 {
-printf("Error\n");
-exit(100);
+return (a + b);
 }
+
+
+/**
+ * op_sub - Returns the difference of a and b
+ * @a: The first integer
+ * @b: The second integer
+ *
+ * Return: The difference of a and b
+ */
+int op_sub(int a, int b)
+{
+return (a - b);
+}
+
+
+
+/**
+ * op_mod - Returns the remainder of the division of a by b
+ * @a: The first integer
+ * @b: The second integer
+ *
+ * Return: The remainder of the division of a by b
+ */
+int op_mod(int a, int b)
+{
 return (a % b);
-default:
-printf("Error\n");
-exit(99);
 }
+
+
+/**
+ * op_div - Returns the result of the division of a by b
+ * @a: The first integer
+ * @b: The second integer
+ *
+ * Return: The result of the division of a by b
+ */
+int op_div(int a, int b)
+{
+return (a / b);
 }
+
+
+
