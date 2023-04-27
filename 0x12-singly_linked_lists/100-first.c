@@ -3,14 +3,13 @@
 void first(void) __attribute__ ((constructor));
 
 /**
- * printMessage - prints a message before the main function is executed
- *
- * Description: This function prints the required message.
- * Return: void
- */
-void printMessage(void)
+  * first - prints a message before the main function
+  * function is executed
+  * Return: null.
+  */
+
+void first(void)
 {
 printf("You're beat! and yet, you must allow,\n");
 printf("I bore my house upon my back!\n");
 }
-
