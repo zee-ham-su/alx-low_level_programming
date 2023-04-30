@@ -13,15 +13,15 @@
 
 void free_listint2(listint_t **head)
 {
-listint_t *curr;
-curr = *head;
-if (head == NULL)
-return;
+listint_t *curr_node = *head;
+listint_t *next_node;
 
-do {
-*head = (*head)->next;
-free(curr);
-} while (*head != NULL);
+while (curr_node != NULL)
+{
+next_node = curr_node->next;
+free(curr_node);
+curr_node = next_node;
+}
 
 *head = NULL;
 }
