@@ -1,30 +1,41 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * print_listint_safe - function prints a linked list.
- * @head: Pointer to the head node of the list.
- * Return: number of nodes in the list.
+ * print_listint_safe - Prints a listint_t linked list safely (avoiding loops)
+ *
+ * @head: A pointer to the head node of the linked list
+ *
+ * Return: The number of nodes in the list
  */
 
 
 size_t print_listint_safe(const listint_t *head)
 {
-const listint_t *temp;
+const listint_t *slowpoke = head, *cheetah = head;
 size_t count = 0;
 
-while (head)
+if (head == NULL)
+exit(98);
+
+while (cheetah != NULL && cheetah->next != NULL)
 {
-printf("[%p] %d\n", (void *)head, head->n);
-count++;
-temp = head;
-head = head->next;
-if (temp <= head)
+slowpoke = slowpoke->next;
+cheetah = cheetah->next->next;
+
+if (slowpoke == cheetah)
 {
-printf("-> [%p] %d\n", (void *)head, head->n);
+printf("[%p] %d\n", (void *)slowpoke, slowpoke->n);
 exit(98);
 }
+
+printf("[%p] %d\n", (void *)slowpoke, slowpoke->n);
+count++;
 }
+
+printf("[%p] %d\n", (void *)slowpoke, slowpoke->n);
+count++;
+
 return (count);
 }
