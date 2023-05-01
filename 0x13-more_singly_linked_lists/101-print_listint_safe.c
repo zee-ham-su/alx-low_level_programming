@@ -16,7 +16,7 @@ size_t count = 0;
 
 while (head)
 {
-printf("[%lu] [%p] %d\n", count, (void *)head, head->n);
+printf("[%p] %d\n", (void *)head, head->n);
 count++;
 temp = head;
 head = head->next;
