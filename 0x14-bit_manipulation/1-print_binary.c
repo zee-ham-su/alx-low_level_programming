@@ -9,26 +9,22 @@
  */
 
 
-
 void print_binary(unsigned long int n)
 {
-unsigned long int tally = 0;
-while (1UL * (1UL << tally) <= n)
+unsigned long int visor = 1;
+
+printf("Binary: ");
+
+while ((n & (~0 << visor)) != 0)
+visor++;
+while (visor > 0)
 {
-tally++;
-}
-tally--;
-while (tally + 1 > 0)
-{
-if ((n >> tally) &1)
-{
+visor--;
+if ((n & (1 << visor)) != 0)
 printf("1");
-}
 else
-{
 printf("0");
 }
-tally--;
-}
+
 printf("\n");
 }
