@@ -11,20 +11,30 @@
 
 void print_binary(unsigned long int n)
 {
-unsigned long int visor = 1;
+unsigned long int tally = 0;
 
-printf("Binary: ");
-
-while ((n & (~0 << visor)) != 0)
-visor++;
-while (visor > 0)
+if (n == 0)
 {
-visor--;
-if ((n & (1 << visor)) != 0)
-printf("1");
-else
-printf("0");
+_putchar('0');
+return;
 }
 
+while (1UL * (1UL << tally) <= n)
+{
+tally++;
+}
+tally--;
+while (tally + 1 > 0)
+{
+if ((n >> tally) &1)
+{
+printf("1");
+}
+else
+{
+printf("0");
+}
+tally--;
+}
 printf("\n");
 }
