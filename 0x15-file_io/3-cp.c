@@ -1,94 +1,67 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 
-#define BUFSIZE 1024
 
+
+/**
+ * main - copies the content of one file to another file
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: 0 on success, otherwise a non-zero number
+ */
 int main(int argc, char *argv[])
 {
-    int fd1, fd2;
-    ssize_t rcount, wcount;
-    char buffer[BUFSIZE];
+	int file_from, file_to, read_file, write_file;
+	char buffer[1024];
 
-    if (argc != 3)
-    {
-        printf("Usage: %s file_from file_to\n", argv[0]);
-        return (1);
-    }
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 
-    fd1 = open(argv[1], O_RDONLY);
-    if (fd1 == -1)
-    {
-        printf("Error: Can't read from file %s\n", argv[1]);
-        return (1);
-    }
+	file_from = open(argv[1], O_RDONLY);
+	if (file_from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 
-    fd2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-    if (fd2 == -1)
-    {
-        printf("Error: Can't write to file %s\n", argv[2]);
-        close(fd1);
-        return (1);
-    }
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (file_to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
 
-    printf("1. Copy file using read() and write() functions.\n");
-    while ((rcount = read(fd1, buffer, BUFSIZE)) > 0)
-    {
-        wcount = write(fd2, buffer, rcount);
-        if (wcount == -1)
-        {
-            printf("Error: Can't write to file %s\n", argv[2]);
-            close(fd1);
-            close(fd2);
-            return (1);
-        }
-    }
+	while ((read_file = read(file_from, buffer, 1024)) > 0)
+	{
+		write_file = write(file_to, buffer, read_file);
+		if (write_file != read_file || write_file == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			exit(99);
+		}
+	}
 
-    printf("Number of bytes copied: %ld\n", (long)wcount);
+	if (read_file == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 
-    lseek(fd1, 0, SEEK_SET);
-    lseek(fd2, 0, SEEK_SET);
+	if (close(file_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
 
-    printf("2. Copy file using read() and write() functions and ");
-    printf("print the number of bytes copied.\n");
+	if (close(file_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+		exit(100);
+	}
 
-    while ((rcount = read(fd1, buffer, BUFSIZE)) > 0)
-    {
-        wcount = write(fd2, buffer, rcount);
-        if (wcount == -1)
-        {
-            printf("Error: Can't write to file %s\n", argv[2]);
-            close(fd1);
-            close(fd2);
-            return (1);
-        }
-    }
-
-    printf("Number of bytes copied: %ld\n", (long)wcount);
-
-    lseek(fd1, 0, SEEK_SET);
-    lseek(fd2, 0, SEEK_SET);
-
-    printf("3. Copy file using read() and write() functions and ");
-    printf("print the contents of the file.\n");
-
-    while ((rcount = read(fd1, buffer, BUFSIZE)) > 0)
-    {
-        wcount = write(fd2, buffer, rcount);
-        if (wcount == -1)
-        {
-            printf("Error: Can't write to file %s\n", argv[2]);
-            close(fd1);
-            close(fd2);
-            return (1);
-        }
-        printf("%.*s", (int)rcount, buffer);
-    }
-
-    close(fd1);
-    close(fd2);
-
-    return (0);
+	return (0);
 }
