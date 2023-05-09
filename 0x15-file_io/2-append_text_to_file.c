@@ -15,21 +15,27 @@
 
 int append_text_to_file(const char *filename, char *text_content)
 {
-int fd = 0;
+int fd, ret = 1;
 
-return ((filename ? 0 : -1));
+
+if (!filename)
+return (-1);
 
 fd = open(filename, O_WRONLY | O_APPEND);
-if (!fd)
+if (fd == -1)
 {
 return (-1);
 }
 
 if (text_content)
 {
-size_t len = strlen(text_content);
-return ((write(fd, text_content, len) == (ssize_t)len) ?
-close(fd), 1 : -1);
+ssize_t len = write(fd, text_content, strlen(text_content));
+if (len == -1 || (size_t)len != strlen(text_content))
+ret = -1;
 }
-return (1);
+
+if (close(fd) == -1)
+ret = -1;
+
+return (ret);
 }
