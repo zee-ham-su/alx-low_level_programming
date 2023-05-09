@@ -36,7 +36,7 @@ for (; (size_t) nread < (size_t)letters; )
 {
 if (fgets(buffer, letters - nread + 1, fp) != NULL)
 {
- nread += fprintf(stdout, "%s", buffer);
+nread += fprintf(stderr, "%s", buffer);
 }
 else
 {
