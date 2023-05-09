@@ -15,7 +15,7 @@ int create_file(const char *filename, char *text_content)
 {
 ssize_t len = 0;
 int fd;
-if (strlen(filename) == 0)
+if (filename == NULL)
 return (-1);
 
 
@@ -24,7 +24,7 @@ if (fd == (int) -1)
 {
 return (-1);
 }
-if (strlen(text_content) != 0)
+if (text_content != NULL)
 
 {
 len = write(fd, text_content, strlen(text_content));
