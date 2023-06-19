@@ -1,5 +1,13 @@
-This README provides an overview of dynamic libraries in the C programming language. It explains what dynamic libraries are, how to create them, and how to use them in your C programs.
+0x18. C - Dynamic libraries
 
+Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+General
+What is a dynamic library, how does it work, how to create one, and how to use it
+What is the environment variable $LD_LIBRARY_PATH and how to use it
+What are the differences between static and shared libraries
+Basic usage nm, ldd, ldconfig
 
 
  Dynamic libraries, also known as shared libraries, are a type of library that is loaded at runtime by the programs that use them. This allows multiple programs to share the same library code, reducing duplication and improving overall system efficiency.
