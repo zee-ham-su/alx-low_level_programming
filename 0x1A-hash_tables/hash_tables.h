@@ -16,9 +16,9 @@
  */
 typedef struct hash_node_s
 {
-     char *key;
-     char *value;
-     struct hash_node_s *next;
+char *key;
+char *value;
+struct hash_node_s *next;
 } hash_node_t;
 
 /**
@@ -31,8 +31,8 @@ typedef struct hash_node_s
  */
 typedef struct hash_table_s
 {
-     unsigned long int size;
-     hash_node_t **array;
+unsigned long int size;
+hash_node_t **array;
 } hash_table_t;
 
 
@@ -87,8 +87,7 @@ void hash_table_delete(hash_table_t *ht);
 
 /* 100-sorted_hash_table.c */
 shash_table_t *shash_table_create(unsigned long int size);
-shash_node_t *add_n_shash(shash_node_t **, const char *, const char *);
-void add_i_shash(shash_table_t *ht, shash_node_t *new);
+void insert_sorted_node(shash_table_t *ht, shash_node_t *node);
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);
 char *shash_table_get(const shash_table_t *ht, const char *key);
 void shash_table_print(const shash_table_t *ht);
