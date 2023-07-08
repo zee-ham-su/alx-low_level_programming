@@ -10,17 +10,8 @@
  */
 unsigned long int key_index(const unsigned char *key, unsigned long int size)
 {
-unsigned long int hash = 0;
-unsigned long int index;
-unsigned int prime = 5381;
-
-while (*key)
-{
-hash = (hash ^ *key) * prime;
-key++;
-}
-
-index = hash % size;
+unsigned long int hash = hash_djb2(key);
+unsigned long int index = hash % size;
 
 return (index);
 }
