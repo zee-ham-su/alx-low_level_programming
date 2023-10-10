@@ -32,9 +32,14 @@ start = pos + 1;
 else
 end = pos - 1;
 }
-if (start <= end)
+if (value == array[start])
+{
+printf("Value checked array[%lu] = [%d]\n", start, array[start]);
+return (start);
+}
+pos = start +
+(((double)(end - start) / (array[end] - array[start])) *
+(value - array[start]));
 printf("Value checked array[%lu] is out of range\n", pos);
-else
-printf("Value checked array[%lu] is out of range\n", start);
 return (-1);
 }
