@@ -33,7 +33,7 @@ if (value == array[current])
 return (current);
 step++;
 prev = current;
-current = step * jump;
+current = step *jump;
 
 } while (current < (int)size && array[current] < value);
 
