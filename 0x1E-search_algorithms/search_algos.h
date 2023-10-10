@@ -11,5 +11,7 @@ int interpolation_search(int *array, size_t size, int value);
 int exponential_search(int *array, size_t size, int value);
 int advanced_binary(int *array, size_t size, int value);
 int binary_search_help(int *array, size_t low, size_t high, int value);
+int advanced_binary(int *array, size_t size, int value);
+int custom_search(int *arr, size_t sz, int val);
 
 #endif /* SEARCH_ALGOS_H */
